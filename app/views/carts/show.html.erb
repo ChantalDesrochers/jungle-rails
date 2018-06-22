@@ -1,8 +1,15 @@
+<% if cart_total = 0 %>
+<p>The cart is empty! Keep shopping!</p>
+<p><%= link_to "Home", products_path %> </p>
+<% else %>
+
 <section class="cart-show">
 
   <header class="page-header">
     <h1>My Cart</h1>
   </header>
+
+
 
   <div class="panel panel-default items">
     <table class="table table-bordered">
@@ -51,3 +58,5 @@
   </div>
 
 </section>
+
+<%end%>

@@ -7,14 +7,21 @@
   <div class="order-summary jumbotron">
     <h4>Thank you for your order!</h4>
     <ul>
-    <li>Thank you <%= current_user.email %>!</li>
+    <li>Thank you
+      <% if current_user %>
+       <%= current_user.email %>
+       <% else %>
+       <%= @orders.email %>!
+       <% end %>
+     </li>
+
     <div>
-    <li>You spent a total of: $<%= @order.total_cents / 100 %> </li>
+    <li>You spent a total of: $<%= @order.total_cents * 0.01 %> </li>
     <% @order.line_items.each do |item| %>
       <li><img src="<%=item.product.image.tiny%>"></li>
         <li><b>Product description:</b> <%= item.product.description %></li>
         <li><b><%= item.product.name %> </b></li>
-        <li>You spent on $<%= item.product.price_cents / 100 %></li>
+        <li>You spent $<%= item.product.price_cents * 0.01 %> on this item</li>
         <%end%>
         <div>
 

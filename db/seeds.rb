@@ -132,5 +132,34 @@ cat3.products.create!({
   price: 2_483.75
 })
 
+##REVIEWS
+user = User.create(email: "cawstse@wefwe.com", name:"wefwefwef", password:"wefwefwe")
+product1 = Product.find_or_create_by! name: 'Electric Chair'
+# product2 = Product.find_or_create_by! name: 'Optimal Sleeping Bed'
+
+product1.reviews.create!({
+  user_id: 1,
+  description: "stupid thang don't work",
+  rating: 1
+  })
+
+product1.reviews.create!({
+  user_id: 1,
+  description: "this is the best",
+  rating: 5
+  })
+
+product1.reviews.create!({
+  user_id: 1,
+  description: "this is almost the best",
+  rating: 3
+  })
+
+
+
+
+
+
+
 
 puts "DONE!"

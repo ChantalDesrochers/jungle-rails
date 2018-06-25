@@ -24,7 +24,40 @@
           <dd><%= @product.price %></dd>
         </dl>
       </div>
+      <% if current_user %>
+<div class="col-sm-4">
+  <h2> Leave a review </h2>
+<%= form_for([ @product, @product.reviews.build ]) do |form| %>
+<p>
+  <%= form.label :description %><br>
+  <%= form.text_area :description %>
+</p>
+<p>
+<%= form.label :rating %><br>
+<%= form.select :rating, [1, 2, 3, 4, 5] %>
+</p>
+<p>
+  <%= form.submit %>
+  <% end %>
+</div>
+<%else%>
+<h2><%= link_to "Register", controller: "users", action: "new"%> or <%= link_to "log in", controller: "sessions", action: "create"%> to leave a review </h2>
+<% end %>
+
+      <div class="col-sm-8">
+        <%if @product.reviews.length > 1 %>
+        <p><b>Reviews</b></p>
+
+         <% @product.reviews.each do |r| %>
+         <p><b>Description of experience with product</b></p>
+          <p><%=r.description %></p>
+          <p><b>Rating:</b> </p>
+            <p><%=r.rating %></p>
+          <% end %>
+        </ul>
+        <%end%>
     </div>
+
 
   </article>
 
